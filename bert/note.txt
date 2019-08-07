@@ -1,0 +1,2 @@
+export  SQUAD_DIR=/Users/zhouli/python_code/ChineseNER/data/open_data_set
+export BERT_BASE_DIR=/Users/zhouli/python_code/ChineseNER/bert/model
