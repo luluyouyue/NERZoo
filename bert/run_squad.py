@@ -228,6 +228,9 @@ def read_squad_examples(input_file, is_training):
   """Read a SQuAD json file into a list of SquadExample."""
   with tf.gfile.Open(input_file, "r") as reader:
     input_data = json.load(reader)["data"]
+    # tf.logging.info("sQuAD data len = %d", len(input_data))
+    # data len = 442
+    input_data = input_data[:1]
 
   def is_whitespace(c):
     if c == " " or c == "\t" or c == "\r" or c == "\n" or ord(c) == 0x202F:
@@ -302,7 +305,8 @@ def read_squad_examples(input_file, is_training):
             end_position=end_position,
             is_impossible=is_impossible)
         examples.append(example)
-
+  # tf.logging.info("example data len = %d", len(examples))
+  # example data len = 269
   return examples
 
 
@@ -453,6 +457,7 @@ def convert_examples_to_features(examples, tokenizer, max_seq_length,
           tf.logging.info(
               "answer: %s" % (tokenization.printable_text(answer_text)))
 
+      # print('input_ids length = ', len(input_ids), 'len mask', len(input_mask), 'len segment_ids', len(segment_ids))
       feature = InputFeatures(
           unique_id=unique_id,
           example_index=example_index,

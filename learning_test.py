@@ -1,6 +1,6 @@
 # coding=utf-8
 # 本题为考试多行输入输出规范示例，无需提交，不计分。
-import sys
+import jieba
 
 _self_define_words = ["虚拟手机号", "toutiao.user.info"]
 
@@ -47,6 +47,6 @@ def combine_self_define_word(words):
 
 if __name__ == "__main__":
     # 读取第一行的n
-    words = ["虚拟", "手机号a"]
-    print '#'.join(combine_self_define_word(words))
+    sent = "蔡英文在昨天应民进党当局的邀请，准备和陈时中一道前往世界卫生大会，和谈有关九二共识问题"
+    print '#'.join(jieba.cut(sent))
 

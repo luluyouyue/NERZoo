@@ -192,7 +192,8 @@ class BertModel(object):
             initializer_range=config.initializer_range,
             max_position_embeddings=config.max_position_embeddings,
             dropout_prob=config.hidden_dropout_prob)
-
+        print("zhouli use_one_hot_embeddings = ", use_one_hot_embeddings)
+        print("zhouli embedding = ", self.embedding_output)
       with tf.variable_scope("encoder"):
         # This converts a 2D mask of shape [batch_size, seq_length] to a 3D
         # mask of shape [batch_size, seq_length, seq_length] which is used
@@ -413,9 +414,11 @@ def embedding_lookup(input_ids,
 
   flat_input_ids = tf.reshape(input_ids, [-1])
   if use_one_hot_embeddings:
+    print("used onehot embedding !")
     one_hot_input_ids = tf.one_hot(flat_input_ids, depth=vocab_size)
     output = tf.matmul(one_hot_input_ids, embedding_table)
   else:
+    print("used embedding !")
     output = tf.gather(embedding_table, flat_input_ids)
 
   input_shape = get_shape_list(input_ids)
